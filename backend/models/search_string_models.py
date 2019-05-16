@@ -7,8 +7,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-SEARCH_DATABASE = os.environ.get("SEARCH_STRING_DB")
-SEARCH_COLLECTION = os.environ.get("SEARCH_STRING_COL")
+SEARCH_DATABASE = os.getenv('SEARCH_STRING_DB')
+SEARCH_COLLECTION = os.getenv("SEARCH_STRING_COL")
 
 
 def search_string_model(search_string):
@@ -19,6 +19,7 @@ def search_string_model(search_string):
     """
     mongo_client = MongoDBHandler()
     connection = mongo_client.get_connection()
+    print(SEARCH_DATABASE)
     db = connection.get_database(SEARCH_DATABASE)
     collection = db.get_collection(SEARCH_COLLECTION)
     search_result = collection.find({"text": search_string})

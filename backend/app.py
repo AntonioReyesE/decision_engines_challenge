@@ -5,6 +5,7 @@ from flask import Flask
 from routes.search_string_routes import search_bp
 from general.databases.MongoDBHandler import MongoDBHandler
 from general.settings import load_env
+import os
 app = Flask(__name__)
 
 # Register the application's routes
@@ -19,6 +20,7 @@ def initialize():
   mongo_conn = MongoDBHandler()
   mongo_conn.init_db()
   load_env()
+
 
 
 if __name__ == "__main__":
